@@ -22,18 +22,23 @@ public class Main {
     public static void playGame(){
         Scanner sc=new Scanner(System.in);
 
-        int position=0,diceVal=0;
+        int position=0,diceVal=0,no_die=0;
         System.out.println("Initial player position: "+position);
         System.out.println("Enter to roll Die");
         String s=sc.nextLine();
 
         while(position<100) {
 
-           if(s.equalsIgnoreCase("roll")){
-               diceVal=rollDice();
-               System.out.println("you rolled "+diceVal);
+            if(position==100){
+                break;
             }
 
+           if(s.equalsIgnoreCase("roll")){
+               diceVal=rollDice();
+
+               no_die++;
+               System.out.println("you rolled "+diceVal);
+            }
 
 
             //check for the option and move position
@@ -41,12 +46,19 @@ public class Main {
             switch (Option) {
                 case "Ladder":
                     position += diceVal;
+
+                    diceVal=rollDice();
+                    position+=diceVal;
+                    if(position>100){
+                        position-=diceVal;
+                    }
                     break;
                 case "Snake":
                     position -= diceVal;
                     if(position<0){
                         position=0;
                     }
+
                     break;
                 case "No play":
                     break;
@@ -54,6 +66,10 @@ public class Main {
                     System.out.println("u got nothing");
             }
             System.out.println("Now ur on the position:" + position);
+
+        }if(position==100){
+            System.out.println("U won the game");
+            System.out.println("No of position took is: "+no_die);
         }
     }
 }
