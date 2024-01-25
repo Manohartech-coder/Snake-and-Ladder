@@ -27,13 +27,15 @@ public class Main {
         System.out.println("Enter to roll Die");
         String s=sc.nextLine();
 
-        if(s.equalsIgnoreCase("roll")){
-           diceVal=rollDice();
-           System.out.println("you rolled "+diceVal);
-        }
-
-
         while(position<100) {
+
+           if(s.equalsIgnoreCase("roll")){
+               diceVal=rollDice();
+               System.out.println("you rolled "+diceVal);
+            }
+
+
+
             //check for the option and move position
             String Option = checkFor();
             switch (Option) {
