@@ -31,19 +31,27 @@ public class Main {
            diceVal=rollDice();
            System.out.println("you rolled "+diceVal);
         }
-        String Option=checkFor();
-        switch (Option){
-            case "Ladder":
-                position+=diceVal;
-                break;
-            case "Snake":
-                position-=diceVal;
-                break;
-            case "No play":
-                break;
-            default:
-                System.out.println("u got nothing");
+
+
+        while(position<100) {
+            //check for the option and move position
+            String Option = checkFor();
+            switch (Option) {
+                case "Ladder":
+                    position += diceVal;
+                    break;
+                case "Snake":
+                    position -= diceVal;
+                    if(position<0){
+                        position=0;
+                    }
+                    break;
+                case "No play":
+                    break;
+                default:
+                    System.out.println("u got nothing");
+            }
+            System.out.println("Now ur on the position:" + position);
         }
-        System.out.println("Now ur on the position:"+position);
     }
 }
